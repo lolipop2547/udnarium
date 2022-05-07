@@ -1,0 +1,111 @@
+<div class="flex-container">
+  <div class="flex-item no-grow">
+    <div>
+      <button style="margin-bottom: 2px; font-size: smaller" (click)="createGameTable()">新しいテーブルを作る</button>
+    </div>
+    <select style="width: 100%; max-width: 155px" size="10" (change)="selectGameTable($event.target.value)" [ngModel]="selectedTable?.identifier">
+      <option *ngFor="let gameTable of getGameTables()" value="{{gameTable.identifier}}" title="{{gameTable.name}}" [style.color]="gameTable.name == '' ? 'gray' : ''">{{gameTable.name == '' ? '(無名のテーブル)' : gameTable.name}}</option>
+    </select>
+  </div>
+  <div class="flex-item">
+    <div style="float: right; margin-top: 3px; margin-right: 3px">
+      <label sytle="white-space: nowrap">
+        <input name="show-hide-images" type="checkbox" value="Show Hides" checked="{{isShowHideImages ? 'checked' : ''}}" (click)="onShowHiddenImages($event)">
+        <i class="material-icons" style="font-size: smaller" [ngClass]="{'red-eye': isShowHideImages}">{{ isShowHideImages ? 'visibility' : 'visibility_off' }}</i>
+      </label>
+    </div>
+    <ng-container *ngIf="!isEmpty || selectedTable">
+      <div class="images-select">
+        <div>
+          <b>画像</b>
+          <div (click)="openBgImageModal()" style="position: relative; overflow: hidden">
+            <div *ngIf="getHidden(tableBackgroundImage)" style="position: absolute; text-align: right; top: 0px; right: 0px; pointer-events: none; z-index: 5">
+              <i class="material-icons" [class]="isShowHideImages ? 'red-eye': 'grow'" style="margin-right: 2px; font-size: 16px; display: block">{{ isShowHideImages ? 'visibility' : 'visibility_off' }}</i>
+            </div>
+            <img height="120" [ngClass]="{ blackout: !isShowHideImages && getHidden(tableBackgroundImage) }" [src]="tableBackgroundImage.url | safe: 'resourceUrl'">
+          </div>
+        </div>
+        <div>
+          <b>背景</b>
+          <div *ngIf="!tableDistanceviewImage.url">
+            <button (click)="openDistanceViewImageModal()" style="height: 120px;" [disabled]="!isEditable">背景画像を追加</button>
+          </div>
+          <div *ngIf="tableDistanceviewImage.url" style="position: relative; overflow: hidden" (click)="openDistanceViewImageModal()">
+            <div *ngIf="getHidden(tableDistanceviewImage)" style="position: absolute; text-align: right; top: 0px; right: 0px; pointer-events: none; z-index: 5">
+              <i class="material-icons" [class]="isShowHideImages ? 'red-eye': 'grow'" style="margin-right: 2px; font-size: 16px; display: block">{{ isShowHideImages ? 'visibility' : 'visibility_off' }}</i>
+            </div>
+            <img height="120" [ngClass]="{ blackout: !isShowHideImages && getHidden(tableDistanceviewImage) }" [src]="tableDistanceviewImage.url | safe: 'resourceUrl'">
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="self-setting">Name：<input [(ngModel)]="tableName" placeholder="Name" [disabled]="!isEditable" /></label>
+      </div>
+      <div>
+        <label class="self-setting">Width：<input [(ngModel)]="tableWidth" type="range" title="{{tableWidth}}" min="{{minSize}}" max="{{maxSize}}" name="tableWidth" [disabled]="!isEditable" /></label>
+        <input [(ngModel)]="tableWidth" type="number" min="{{minSize}}" max="{{maxSize}}" style="width: 5em;" [disabled]="!isEditable">
+      </div>
+      <div>
+        <label class="self-setting">Height：<input [(ngModel)]="tableHeight" title="{{tableHeight}}" type="range" min="{{minSize}}" max="{{maxSize}}" name="tableHeight" [disabled]="!isEditable"/></label>
+        <input [(ngModel)]="tableHeight" type="number" min="{{minSize}}" max="{{maxSize}}" style="width: 5em;" [disabled]="!isEditable">
+      </div>
+      <div>
+        <label class="self-setting">グリッド：
+          <select [(ngModel)]="tableGridType" name="tableGridType" [disabled]="!isEditable">
+            <option value="-1">なし</option>
+            <option value="0">スクエア</option>
+            <option value="1">ヘクス（縦揃え）</option>
+            <option value="2">ヘクス（横揃え）</option>
+          </select>
+        </label>
+        <label class="self-setting" style="margin-left: 3px">色：
+          <select [(ngModel)]="tableGridColor" name="tableGridColor" [disabled]="!isEditable || tableGridType == -1">
+            <option value="#000000e6">黒</option>
+            <option value="#dddddde6">白</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label class="self-setting">
+          <input type="checkbox" [(ngModel)]="tableGridNumberShow" name="tableGridNumberShow" [disabled]="!isEditable || tableGridType == -1" />
+          <span [ngClass]="{disabled: !isEditable || tableGridType == -1}">グリッドの座標番号を表示</span>
+        </label>
+      </div>
+      <div>
+        <label class="self-setting">背景フィルタ：
+          <select [(ngModel)]="tableDistanceviewFilter" name="tableDistanceviewFilter" [disabled]="!isEditable">
+            <option value="">なし</option>
+            <option value="white">ホワイト</option>
+            <option value="black">ブラック</option>
+          </select>
+        </label>
+      </div>
+      <hr/>
+      <div>
+        <label class="self-setting">
+          <input type="checkbox" [(ngModel)]="tableGridShow" name="tableGridShow" />
+          グリッドを常に表示<sup class="self-only">*</sup>
+        </label>
+        <label style="margin-left: 1em" class="self-setting">
+          <input type="checkbox" [(ngModel)]="tableGridSnap" name="tableGridSnap" />
+          スナップ<sup class="self-only">*</sup>
+        </label>
+        <ng-container *ngIf="!isDeleted">
+          <button style="margin-left: 2em" [disabled]="isSaveing" (click)="save()">
+            <div style="position: relative;">
+              <div [ngClass]="{'is-hidden': isSaveing}">保存</div>
+              <div *ngIf="isSaveing" class="progress">{{progresPercent}}%</div>
+            </div>
+          </button>
+          <button class="danger" (click)="delete()" [disabled]="getGameTables().length <= 1">削除</button>
+        </ng-container>
+        <ng-container *ngIf="isDeleted">
+          <button (click)="restore()">元に戻す</button>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<ng-container *ngIf="isEmpty">
+  <div style="font-size: 12px;">※テーブルが１つも作成されていません。「新しいテーブルを作る」から新しいテーブルを作成することができます。</div>
+</ng-container>

@@ -1,0 +1,61 @@
+.drop-zone {
+  border: 2px dashed #555;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 25px;
+  text-align: center;
+  font: 24px bold 'Vollkorn';
+  color: #444;
+  cursor: pointer;
+}
+
+.large-font {
+  font-size: 64px;
+}
+
+.small-font {
+  font-size: 12px;
+}
+
+.box {
+  font-size: smaller;
+  border-bottom:1px dotted #888;
+  vertical-align: baseline;
+}
+.box.last {
+  border-bottom:0px none transparent;
+}
+
+.volume {
+  display: inline-block;
+  width: 3em;
+  text-align: right;
+}
+
+input[type=number] {
+  text-align: right;
+}
+
+.self-only {
+  color: red;
+}
+button .self-only {
+  vertical-align: text-top;
+}
+
+.box button {
+  font-size: 12px;
+  height: 26px;
+  width: 5.6em;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+button .material-icons {
+  font-size: 12px;
+}
+
+.header {
+  background: linear-gradient(-30deg, rgba(240,218,189, 0.9), rgba(255, 244, 232, 0.9));
+  border-bottom: dotted 1px #888;
+}

@@ -1,0 +1,511 @@
+@supports (-moz-user-select: -moz-none) {
+  /* 汚いけどとりあえず */
+/*  .chat-bubble p:after {
+    bottom: -28px !important;
+  }
+  いらなくなった？
+*/
+   /*
+  .chat-bubble p.is-whisper:after {
+    bottom: -11px !important; 
+  }
+  */
+}
+
+.is-grab {
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.is-grabbing {
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.is-3d {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+/*
+.is-transition {
+  -webkit-transition: -webkit-transform 132ms linear;
+  transition: transform 132ms linear;
+}
+
+.upright-transform {
+  -webkit-transition: -webkit-transform 132ms ease;
+  transition: transform 132ms ease;
+}
+*/
+.upright-transform.fall {
+  -webkit-transition: -webkit-transform 132ms cubic-bezier(.21,.97,.75,1.25);
+  transition: transform 132ms cubic-bezier(.21,.97,.75,1.25);
+}
+
+.is-pointer-events-none {
+  pointer-events: none;
+}
+
+.is-pointer-events-auto {
+  pointer-events: auto;
+}
+
+.component {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -moz-user-drag: none;
+  -webkit-user-drag: none;
+
+}
+
+.component-content {
+  width: 100%;
+  height: 100%;
+}
+
+.pedestal-grab {
+  z-index: -1;
+  backface-visibility: hidden;
+  position: absolute;
+  top: -22px;
+  left: -6px;
+  height: calc(100% + 44px);
+  width: calc(100% + 12px);
+  cursor: default;
+  border-radius: 37px;
+}
+
+.pedestal-grab-border {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-top: solid 28px #999;
+  border-left: solid 12px #999;
+  border-right: solid 12px #CCC;
+  border-bottom: solid 28px #CCC;
+  border-radius: 37px;
+}
+
+.pedestal-inner {
+  backface-visibility: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border: solid 6px #FFCC80;
+  border-radius: 25px;
+}
+.pedestal-inner.not-inventory {
+  border-color: #80CCEE;
+}
+
+.pedestal-outer {
+  backface-visibility: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border: solid 2px #212121;
+  border-radius: 25px;
+}
+
+.upright-transform {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: rotateX(-90deg) translateY(-50%);
+}
+
+.is-fit-width {
+  height: auto;
+  width: 100%;
+}
+
+.fill-frame {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.image {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+.image-box {
+  display: inline-block;
+  text-align: center;
+}
+.image-box img {
+  object-fit: contain;
+  object-position: 50% 100%;
+  margin-bottom: 0px;
+  margin-top: auto;
+}
+
+.inverse {
+  transform: rotateY(-180deg);
+}
+.inverser {
+  transition: transform 132ms 0s ease;
+}
+.hollow {
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.black-paint {
+  filter: brightness(0);
+}
+
+.aura {
+  transition: filter 0.2s ease-in-out;
+}
+
+.aura.black {
+  filter: drop-shadow(0 -4px 4px black);
+}
+.aura.blue {
+  filter: drop-shadow(0 -4px 4px #33f);
+}
+.aura.green {
+  filter: drop-shadow(0 -4px 4px #3f3);
+}
+.aura.cyan {
+  filter: drop-shadow(0 -4px 4px #3ff);
+}
+.aura.red {
+  filter: drop-shadow(0 -4px 4px #f00);
+}
+.aura.magenta {
+  filter: drop-shadow(0 -4px 4px #f0f);
+}
+.aura.yellow {
+  filter: drop-shadow(0 -4px 4px #ff3);
+}
+.aura.white {
+  filter: drop-shadow(0 -4px 4px #fff);
+}
+
+.name-tag {
+  box-sizing: border-box;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  position: absolute;
+  top: -26px;
+}
+
+.rotate-frame {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  overflow: visible;
+}
+
+.rotate-inner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  height: auto;
+
+  overflow: visible;
+}
+
+.is-nowrap {
+  white-space: nowrap;
+}
+
+.is-black-background {
+  color: #CCC;
+  background-color: rgba(30, 30, 30, 0.8);
+}
+
+.fornt-tag {
+ backface-visibility: hidden;
+}
+
+.back-tag {
+  position: absolute;
+  top: 3px;
+  backface-visibility: hidden;
+  transform: rotateY(-180deg);
+}
+
+.has-length-limit {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 24em;
+}
+
+.rotate-grab-icon {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  box-sizing: border-box;
+  cursor: -moz-default;
+  cursor: -webkit-default;
+  cursor: default;
+  z-index: 1;
+  padding: 2px;
+  background-color: #CCCCCC;
+  border-radius: 100%;
+  color: #444;
+  font-size: 8px;
+}
+
+.of-top {
+  top: -42px;
+}
+
+.of-bottom {
+  bottom: -30px;
+}
+
+.of-front {
+  position: absolute;
+  width: 24px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  color: #444;
+}
+
+.of-back {
+  position: absolute;
+  width: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #444;
+}
+
+.rotate-grab {
+  opacity: 0;
+}
+
+.component:hover .rotate-grab {
+  opacity: 0.5;
+}
+
+.component:active .rotate-grab {
+  opacity: 0;
+}
+
+.component .rotate-grab:hover, .component .rotate-grab:active {
+  opacity: 1;
+}
+
+.material-icons {
+  display: none;
+}
+
+.component:hover .material-icons, .component:active .material-icons {
+  display: inline;
+}
+
+.altitude-indicator {
+  font-size: 10px;
+}
+.elevation-indicator, .altitude-indicator {
+  padding-left: 2px;
+  color: black;
+  text-shadow: whitesmoke 0px 0px 3px;
+  backface-visibility: hidden;
+}
+.elevation-indicator {
+  font-weight: bolder;
+  font-size: 12px;
+}
+
+.chat-bubble {
+  position: absolute;
+  pointer-events: none;
+  transform-origin: center calc(100% + 12px);
+}
+
+.chat-bubble p {
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 100%;
+  min-width: 130px;
+  font-size: 11px;
+  background: linear-gradient(-30deg, rgba(240, 218, 189, 0.9), rgba(255, 244, 232, 0.9));
+  border: 1px solid;
+  border-radius: 24px;
+  margin: 0px;
+  padding: 6px 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.chat-bubble p.rubied {
+  padding-top: 12px;
+}
+
+.chat-bubble p.emote {
+  text-align: center;
+  font-size: 38px;
+  font-weight: bold;
+  border: none;
+  background: none;
+  min-width: 300px;
+  -webkit-text-stroke: 1px rgb(240, 218, 189);
+  letter-spacing: -2px;
+  white-space: pre;
+}
+
+.chat-bubble p.is-whisper {
+  border-radius: 24px 12px;
+  font-size: 11px; 
+  background: rgba(85, 85, 85, 0.8);
+  box-shadow: 0px 0px 2px 0px #ccc;
+}
+
+.chat-bubble p.is-whisper.emote {
+  font-size: 38px;
+  font-weight: bold;
+  border: none;
+  background: none;
+  min-width: 200px;
+  -webkit-text-stroke: 2px #555;
+  box-shadow: none;
+}
+
+.chat-bubble p:after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  line-height: 1;
+	vertical-align: baseline;
+  left: 50%;
+  margin-left: -8px;
+  bottom: -17px;
+  border: 8px solid transparent;
+  border-top-color: inherit;
+}
+
+.chat-bubble p.emote:after {
+  border: 0px none transparent;
+}
+/*
+.chat-bubble p.emote:after {
+  border-top-color: transparent;
+}
+
+.chat-bubble p.is-whisper:after {
+  border: none;
+  color: #555;
+  text-shadow: 0px 0px 2px #ccc;
+  content: '〇。';
+  font-size: 12px;
+  font-weight: bold;
+  bottom: -10px;
+}
+*/
+.chat-bubble p.is-whisper.emote:after {
+  content: none;
+}
+
+.chat-bubble-buyo {
+  transform-origin: center calc(100% + 8px);
+  transition: all .2s ease;
+  animation: chat-bubble-buyo 1.2s ease-in-out 0.1s infinite alternate;
+  transform: scale3d(0.9, 0.9, 0.9);
+}
+.chat-bubble-buyo.back {
+  transform-origin: center calc(100% + 8px);
+  transition: all .2s ease;
+  animation: chat-bubble-buyo-back 1.2s ease-in-out 0.1s infinite alternate;
+  transform: rotateY(-180deg) scale3d(0.9, 0.9, 0.9);
+}
+.chat-bubble-buyo.emote {
+  animation-duration: .6s;
+}
+
+@keyframes chat-bubble-buyo {
+  0% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes chat-bubble-buyo-back {
+  0% {
+    transform: rotateY(-180deg) scale3d(0.9, 0.9, 0.9);
+  }
+  100% {
+    transform: rotateY(-180deg) scale3d(1, 1, 1);
+  }
+}
+
+.drop-shadow {
+  pointer-events: none;
+}
+
+.face-icon-box {
+  display: block;
+  position: relative;
+  border: 0px none;
+  width: 36px;
+  height: 36px;
+  max-width: 36px;
+  max-height: 36px;
+  overflow: hidden;
+  left: -20px;
+  top: -18px;
+  margin-right: -16px;
+  margin-bottom: -22px;
+  float: left;
+  backface-visibility: hidden;
+  /* background: linear-gradient(-30deg, rgb(240, 218, 189), rgb(255, 244, 232)); */
+}
+
+p.rubied .face-icon-box {
+  top: -21px;
+}
+
+.face-icon-box img {
+  width: 100%;
+  height: 100%;
+  vertical-align: bottom;
+  object-fit: cover;
+  object-position: 50% 0%;
+  border-radius: 0.4em;
+}
+/*
+p.is-wisper .face-icon {
+  background: rgb(48, 45, 45);
+}
+*/
+.selected {
+  filter: drop-shadow(0px 0px 8px yellow) drop-shadow(0px 0px 4px yellow);
+  transition: all .2s ease-in;
+}

@@ -1,0 +1,270 @@
+:host {
+  display: block;
+}
+
+.container {
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+.message {
+  display: flex;
+  flex-flow: row nowrap;
+  box-sizing: border-box;
+  padding: 5px 5px;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  border-bottom:1px dotted #999;
+}
+.is-mine.message {
+  border-left: 4px solid #555;
+}
+.is-others.message {
+  border-right: 4px solid #555;
+}
+
+.direct-message {
+  background-color: #555;
+  color: #CCC;
+  border-bottom: 1px dotted #CCC;
+}
+.is-mine.direct-message {
+  border-left: 4px solid #555;
+}
+.is-others.direct-message {
+  border-right: 4px solid #555;
+}
+
+.operation-log {
+  color: #666;
+  background-color: #CCCCCCCC;
+}
+
+.message .image {
+  padding: 0px;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  vertical-align: top;
+}
+.message .image img {
+  width: 100%;
+  height: 100%;
+  vertical-align: bottom;
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+.message .image img.face-icon {
+  border-radius: 0.5rem;
+}
+
+.message .body {
+  flex-grow: 1;
+}
+.message .title {
+  vertical-align: top;
+  font-size: 14px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.inverse {
+  transform: scaleX(-1);
+}
+.hollow {
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.black-paint {
+  filter: brightness(0);
+}
+
+.message .text {
+  vertical-align: top;
+  padding: 2px 12px 0 12px;
+  font-size: 14px;
+}
+.message .tip {
+  font-size: 8px;
+  padding-left: 12px;
+}
+
+.msg-name {
+  font-weight: bold;
+}
+
+.msg-text {
+  white-space: pre-wrap;
+}
+
+.dicebot-message .msg-name {
+  font-size: 8px;
+}
+
+.dicebot-message .msg-text {
+  color: #11F;
+}
+
+.direct-message.dicebot-message .msg-text {
+  color: #CCF;
+}
+
+.dicebot-message .msg-text.is-success {
+  color: #17f;
+}
+.dicebot-message .msg-text.is-failure {
+  color: #F05;
+}
+.direct-message.dicebot-message .msg-text.is-success {
+  color: #adF;
+}
+.direct-message.dicebot-message .msg-text.is-failure {
+  color: #F66;
+}
+
+.dicebot-message {
+  border-left: 4px transparent;
+}
+
+.dicebot-message .msg-name,
+.dicebot-message .msg-text,
+.operation-log .msg-name,
+.operation-log .msg-text {
+  font-style: oblique;
+}
+
+.is-others .title {
+  text-align: right;
+}
+
+.is-others .msg-text {
+  text-align: right;
+}
+.is-others .msg-text span {
+  text-align: left;
+  max-width: 100%;
+}
+
+.is-edited {
+  margin-left: 2px;
+  font-size: 8px;
+  vertical-align: bottom;
+}
+
+.is-edited::before {
+  content: '(';
+}
+
+.is-edited::after {
+  content: ')';
+}
+
+.edit-button {
+  padding: 0px 6px;
+  vertical-align: 10%;
+  margin: 0px 1px 0px 0px;
+}
+
+.edit-buttons {
+  visibility: hidden;
+}
+.container:hover .edit-buttons{
+  visibility: visible;
+}
+
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Verdana, Meiryo, "M+ 1p", sans-serif;
+  margin: -3px -3px -3px -3px;
+  font-size: 14px;
+  resize: none;
+}
+
+.small-font {
+  font-size: 14px;
+  vertical-align: bottom;
+}
+
+.aura {
+  transition: filter 0.3s ease-in-out;
+}
+
+.aura.black {
+  filter: drop-shadow(0 -4px 4px black);
+}
+.aura.blue {
+  filter: drop-shadow(0 -4px 4px #00f);
+}
+.aura.green {
+  filter: drop-shadow(0 -4px 4px #3f3);
+}
+.aura.cyan {
+  filter: drop-shadow(0 -4px 4px #3ff);
+}
+.aura.red {
+  filter: drop-shadow(0 -4px 4px #f00);
+}
+.aura.magenta {
+  filter: drop-shadow(0 -4px 4px #f0f);
+}
+.aura.yellow {
+  filter: drop-shadow(0 -4px 4px #ff3);
+}
+.aura.white {
+  filter: drop-shadow(0 -4px 6px #ccc) drop-shadow(0 -4px 4px #fff);
+}
+
+.msg-timestamp {
+  white-space: nowrap;
+}
+
+.container.compact {
+  overflow: hidden;
+}
+
+.container.compact.editing {
+  padding-top: 1px;
+}
+
+.container.compact .message {
+  padding: 2px !important;
+}
+
+.container.compact .body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.container.compact .title {
+  min-width: 6em;
+}
+
+.container.compact .title,
+.container.compact .text,
+.container.compact .tip {
+  padding: 0px 3px;
+  text-align: left;
+}
+
+.container.compact .msg-name {
+  flex-grow: 0;
+}
+
+.container.compact .msg-text {
+  flex-grow: 1;
+}
+
+.container.compact .edit-buttons {
+  display: none;
+}
+
+.container.compact:hover .edit-buttons,
+.container.compact.editing .edit-buttons {
+  display: inline-block;
+}
+
+.container.compact textarea {
+  margin: -3px -3px -3px -3px;
+}
